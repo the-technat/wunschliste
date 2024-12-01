@@ -56,4 +56,6 @@ COPY --from=build --chmod=777 ${BUILD_DIR}/client/dist ./client/dist
 VOLUME /data
 EXPOSE ${FLATNOTES_PORT}/tcp
 
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh 
 ENTRYPOINT [ "/entrypoint.sh" ]
