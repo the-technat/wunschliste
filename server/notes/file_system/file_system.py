@@ -46,7 +46,7 @@ class FileSystemNotes(BaseNotes):
     TAGS_WITH_HASH_RE = re.compile(r"(?:(?<=^)|(?<=\s))#\w+(?=\s|$)")
 
     def __init__(self):
-        self.storage_path = get_env("FLATNOTES_PATH", mandatory=True)
+        self.storage_path = get_env("FLATNOTES_PATH", mandatory=False, default="/data")
         if not os.path.exists(self.storage_path):
             raise NotADirectoryError(
                 f"'{self.storage_path}' is not a valid directory."

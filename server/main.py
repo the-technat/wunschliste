@@ -1,3 +1,5 @@
+import uvicorn
+
 from typing import List, Literal
 
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, UploadFile
@@ -257,3 +259,6 @@ app.mount(
     StaticFiles(directory="client/dist"),
     name="dist",
 )
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=8080, log_level="info",host="0.0.0.0",proxy_headers=True,forwarded_allow_ips="*")

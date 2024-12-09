@@ -7,8 +7,6 @@
 !Pipfile
 !Pipfile.lock
 !client/**
-!entrypoint.sh
-!healthcheck.sh
 !package-lock.json
 !package.json
 !postcss.config.js
