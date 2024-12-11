@@ -1,4 +1,4 @@
-FROM docker.io/node:20-bullseye AS build-frontend
+FROM docker.io/node:22-bullseye AS build-frontend
 WORKDIR /build
 
 # Install dependencies
