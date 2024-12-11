@@ -1,11 +1,11 @@
-FROM node:20-bullseye AS build-frontend
+FROM docker.io/node:20-bullseye AS build-frontend
 WORKDIR /build
 
-# Grab dependencies
+# Install dependencies
 COPY package*.json ./
 RUN npm clean-install
 
-# Build vue js to dist folder
+# Build frontend
 COPY .htmlnanorc \
     postcss.config.js \
     tailwind.config.js \
@@ -14,19 +14,22 @@ COPY .htmlnanorc \
 COPY client ./client
 RUN npm run build
 
-FROM python:3.11-bullseye AS build-backend
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm AS build-backend
 WORKDIR /build
-RUN pip install --no-cache-dir pipenv
 
-COPY Pipfile Pipfile.lock ./
-RUN pipenv install --deploy --ignore-pipfile --system
+# Install dependencies
+COPY pyproject.toml uv.lock ./
+RUN uv sync --no-cache --frozen --compile-bytecode --link-mode=copy --no-editable --no-install-project 
 
-FROM gcr.io/distroless/python3-debian12:latest
+# Build backend
+COPY server/ ./
+RUN uv sync --no-cache --frozen --compile-bytecode --link-mode=copy --no-editable
+ 
+FROM python:3.12-slim-bullseye
 WORKDIR /app
 
-COPY server /app/server
+COPY --chmod=777 server /app/server
 COPY --from=build-frontend --chmod=777 /build/client/dist /app/client/dist
-COPY --from=build-backend /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=build-backend --chmod=777 /build/.venv /app/.venv
 
-ENV PYTHONPATH=/usr/local/lib/python3.11/site-packages
-ENTRYPOINT [ "python", "server/main.py"]
+ENTRYPOINT [ "/app/.venv/bin/python3", "/app/server/main.py"]
