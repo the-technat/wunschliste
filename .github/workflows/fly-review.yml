@@ -30,7 +30,7 @@ jobs:
           secrets: FLATNOTES_USERNAME=${{ secrets.REVIEW_USERNAME }} FLATNOTES_PASSWORD=${{ secrets.REVIEW_PASSWORD }} FLATNOTES_SECRET_KEY=${{ secrets.REVIEW_SECRET_KEY }}
       - name: Get Github Token # https://github.com/marketplace/actions/delete-deployment-environment#how-to-obtain-the-proper-token
         if: github.event_name == 'pull_request' && github.event.action == 'closed'
-        uses: navikt/github-app-token-generator@v1.1.1
+        uses: navikt/github-app-token-generator@v1.2.1
         id: get-token
         with:
           app-id: ${{ secrets.GH_APP_ID }}
