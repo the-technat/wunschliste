@@ -1,15 +1,1 @@
-# Ignore everything
-**
-
-# Include the following
-!.htmlnanorc
-!LICENSE
-!uv.lock
-!pyproject.toml
-!client/**
-!package-lock.json
-!package.json
-!postcss.config.js
-!server/**
-!tailwind.config.js
-!vite.config.js
+.venv
