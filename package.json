@@ -20,7 +20,7 @@
     "@toast-ui/editor-plugin-code-syntax-highlight": "3.1.0",
     "axios": "1.7.9",
     "mousetrap": "1.6.5",
-    "pinia": "2.1.7",
+    "pinia": "2.3.1",
     "primevue": "3.53.1",
     "vue": "3.4.33",
     "vue-router": "4.4.0"
