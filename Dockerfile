@@ -25,7 +25,7 @@ RUN uv sync --no-cache --frozen --compile-bytecode --link-mode=copy --no-editabl
 COPY server/ ./
 RUN uv sync --no-cache --frozen --compile-bytecode --link-mode=copy --no-editable
  
-FROM python:3.12-slim-bullseye
+FROM python:3.13-slim-bullseye
 WORKDIR /app
 
 COPY --chmod=777 server /app/server
