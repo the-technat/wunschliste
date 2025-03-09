@@ -1,11 +1,9 @@
 FROM docker.io/node:22-bullseye AS build-frontend
 WORKDIR /build
 
-# Install dependencies
 COPY package*.json ./
 RUN npm clean-install
 
-# Build frontend
 COPY .htmlnanorc \
     postcss.config.js \
     tailwind.config.js \
@@ -14,22 +12,30 @@ COPY .htmlnanorc \
 COPY client ./client
 RUN npm run build
 
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm AS build-backend
+FROM python:3.13-slim-bookworm AS build-backend
+COPY --from=ghcr.io/astral-sh/uv:0.6.5 /uv /uvx /bin/
 WORKDIR /build
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy 
 
-# Install dependencies
-COPY pyproject.toml uv.lock ./
-RUN uv sync --no-cache --frozen --compile-bytecode --link-mode=copy --no-editable --no-install-project 
+# Disable Python downloads, because we want to use the system interpreter
+# across both images. If using a managed Python version, it needs to be
+# copied from the build image into the final image; see `standalone.Dockerfile`
+# for an example.
+ENV UV_PYTHON_DOWNLOADS=0
 
-# Build backend
-COPY server/ ./
-RUN uv sync --no-cache --frozen --compile-bytecode --link-mode=copy --no-editable
- 
-FROM python:3.12-slim-bullseye
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project --no-dev
+
+COPY . /build
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-dev
+
+FROM python:3.13-slim-bookworm 
 WORKDIR /app
 
-COPY --chmod=777 server /app/server
+COPY --from=build-backend --chmod=777 /build/ /app
 COPY --from=build-frontend --chmod=777 /build/client/dist /app/client/dist
-COPY --from=build-backend --chmod=777 /build/.venv /app/.venv
 
 ENTRYPOINT [ "/app/.venv/bin/python3", "/app/server/main.py"]
