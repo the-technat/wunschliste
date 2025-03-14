@@ -32,7 +32,7 @@
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
     "tailwindcss": "3.4.17",
-    "vite": "5.4.14"
+    "vite": "6.2.2"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-musl": "4.35.0"
