@@ -36,5 +36,16 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-musl": "4.36.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-technat/wunschliste.git"
+  },
+  "bugs": {
+    "url": "https://github.com/the-technat/wunschliste/issues"
+  },
+  "homepage": "https://github.com/the-technat/wunschliste#readme"
 }
