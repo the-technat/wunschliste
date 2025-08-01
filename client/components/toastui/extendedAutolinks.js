@@ -91,7 +91,7 @@ function parseWikiLink(source) {
 }
 
 function parseTagLink(source) {
-   const matched = source.matchAll(/(?:^|\s)(#[a-zA-Z0-9_-]+)(?=\s|$)/g);
+  const matched = source.matchAll(/(?:^|\s)(#[a-zA-Z0-9_-]+)(?=\s|$)/g);
   if (matched) {
     return Array.from(matched).map((match) => {
       const text = match[1];
@@ -112,10 +112,10 @@ function parseTagLink(source) {
         }`,
       };
     });
-   }
-  
-    return null;
   }
+
+  return null;
+}
 
 function extendedAutolinks(source) {
   return [
