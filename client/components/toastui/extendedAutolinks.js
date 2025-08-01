@@ -1,3 +1,4 @@
+import { params, searchSortOptions } from "../../constants.js";
 import router from "../../router.js";
 
 /*
@@ -90,17 +91,28 @@ function parseWikiLink(source) {
 }
 
 function parseTagLink(source) {
-    const matched = source.matchAll(/(?:^|\s)(#[a-zA-Z0-9_-]+)(?=\s|$)/g);
-    if (matched) {
-      return Array.from(matched).map((match) => {
-        const text = match[1];
-        return {
-          text,
-          range: [match.index + match[0].indexOf(text), match.index + match[0].indexOf(text) + text.length - 1],
-          url: `${router.resolve({ name: "search", query: { term: text } }).href}`,
-        };
-      });
-    }
+   const matched = source.matchAll(/(?:^|\s)(#[a-zA-Z0-9_-]+)(?=\s|$)/g);
+  if (matched) {
+    return Array.from(matched).map((match) => {
+      const text = match[1];
+      return {
+        text,
+        range: [
+          match.index + match[0].indexOf(text),
+          match.index + match[0].indexOf(text) + text.length - 1,
+        ],
+        url: `${
+          router.resolve({
+            name: "search",
+            query: {
+              [params.searchTerm]: text,
+              [params.sortBy]: searchSortOptions.title,
+            },
+          }).href
+        }`,
+      };
+    });
+   }
   
     return null;
   }
