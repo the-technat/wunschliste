@@ -38,7 +38,6 @@ const baseOptions = {
   plugins: [codeSyntaxHighlight],
   customHTMLRenderer: customHTMLRenderer,
   usageStatistics: false,
-  extendedAutolinks,
 };
 
 export default baseOptions;
