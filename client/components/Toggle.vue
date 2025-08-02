@@ -6,7 +6,7 @@
     <SvgIcon
       type="mdi"
       :path="isOn ? mdiToggleSwitch : mdiToggleSwitchOff"
-      :class="{ 'text-theme-brand': isOn, 'text-theme-text-very-muted': !isOn }"
+      :class="isOn ? 'text-theme-brand' : 'text-theme-text-very-muted'"
       width="auto"
       height="1em"
       viewBox="2 7 20 10"
