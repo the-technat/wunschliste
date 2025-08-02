@@ -3,8 +3,10 @@
 import colors from "tailwindcss/colors";
 
 export default {
-  content: ["client/**/*.{html,js,vue}"],
-  darkMode: "selector",
+   content: [
+    "./client/**/*.{html,js,ts,jsx,tsx,vue}",
+  ],
+  darkMode: ["class", "dark"],
   theme: {
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
