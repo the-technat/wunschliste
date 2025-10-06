@@ -13,7 +13,7 @@ COPY client ./client
 RUN npm run build
 
 FROM python:3.13-slim-bookworm AS build-backend
-COPY --from=ghcr.io/astral-sh/uv:0.8.22 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.8.23 /uv /uvx /bin/
 WORKDIR /build
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy 
 
