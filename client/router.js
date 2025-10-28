@@ -1,6 +1,7 @@
 import * as constants from "./constants.js";
 
 import { createRouter, createWebHistory } from "vue-router";
+import { authCheck } from "./api.js";
 
 const router = createRouter({
   history: createWebHistory(""),
@@ -37,6 +38,27 @@ const router = createRouter({
       }),
     },
   ],
+});
+
+
+let authChecked = false;
+router.beforeEach(async (to) => {
+  if (authChecked || to.name === "login") {
+    return;
+  }
+  try {
+    await authCheck();
+    return;
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      return {
+        name: "login",
+        query: { [constants.params.redirect]: to.fullPath },
+      };
+    }
+  } finally {
+    authChecked = true;
+  }
 });
 
 router.afterEach((to) => {
