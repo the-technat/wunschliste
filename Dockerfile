@@ -28,7 +28,11 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project --no-dev
 
-COPY . /build
+COPY uv.lock \
+    pyproject.toml \ 
+    server/ \
+    /build
+
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
 
@@ -38,4 +42,4 @@ WORKDIR /app
 COPY --from=build-backend --chmod=777 /build/ /app
 COPY --from=build-frontend --chmod=777 /build/client/dist /app/client/dist
 
-ENTRYPOINT [ "/app/.venv/bin/python3", "/app/server/main.py"]
+ENTRYPOINT [ "/app/.venv/bin/python3", "/app/main.py"]
