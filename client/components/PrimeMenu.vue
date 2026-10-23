@@ -22,7 +22,7 @@ const menu = ref();
 
 const style = {
   root: "border p-1 rounded-sm border-theme-border bg-theme-background",
-  menuitem: ({ context }) => ({
+  item: ({ context }) => ({
     class: [
       "text-theme-text-muted rounded-sm px-2 py-1",
       "hover:bg-theme-background-elevated hover:cursor-pointer",
