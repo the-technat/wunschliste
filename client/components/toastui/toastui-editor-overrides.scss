@@ -318,3 +318,14 @@
     }
   }
 }
+
+// On small screens the popups (link, image, table, ...) are wider than the space left of their toolbar button
+// and would be cut off. Align them with the editor instead of centering them on the button.
+@media (max-width: 639px) {
+  .toastui-editor-popup {
+    left: 0 !important;
+    margin-left: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
