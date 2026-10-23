@@ -11,7 +11,7 @@
         ref="input"
         v-model="searchTerm"
         v-focus
-        class="w-full bg-transparent focus:outline-none"
+        class="w-full bg-transparent focus:outline-hidden"
         :placeholder="placeholder"
         @keydown="keydownHandler"
         @keyup="stateChangeHandler"
@@ -31,7 +31,7 @@
       <p
         v-for="(tag, index) in tagMatches"
         ref="tagMenuItems"
-        class="cursor-pointer rounded px-2 py-1 hover:bg-theme-background-elevated"
+        class="cursor-pointer rounded-sm px-2 py-1 hover:bg-theme-background-elevated"
         :class="{ 'bg-theme-background-elevated': index === tagMenuIndex }"
         @click="tagChosen(tag)"
         @mousedown.prevent

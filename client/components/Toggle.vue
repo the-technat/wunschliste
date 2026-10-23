@@ -1,6 +1,6 @@
 <template>
   <button
-    class="flex cursor-pointer items-center text-nowrap rounded bg-theme-background px-2 py-1"
+    class="flex cursor-pointer items-center text-nowrap rounded-sm bg-theme-background px-2 py-1"
   >
     <span v-if="label" class="mr-2 text-theme-text-muted">{{ label }}</span>
     <SvgIcon

@@ -5,8 +5,6 @@ COPY package*.json ./
 RUN npm clean-install
 
 COPY .htmlnanorc \
-    postcss.config.js \
-    tailwind.config.js \
     vite.config.js \
     ./
 COPY client ./client
