@@ -7,6 +7,7 @@ import Editor from "@toast-ui/editor";
 import { onMounted, ref } from "vue";
 
 import baseOptions from "./baseOptions.js";
+import { createEmojiToolbarItem } from "./emojiToolbarItem.js";
 
 const props = defineProps({
   initialValue: String,
@@ -28,6 +29,15 @@ onMounted(() => {
     el: editorElement.value,
     initialValue: props.initialValue,
     initialEditType: props.initialEditType,
+    // The default toolbar with the emoji picker added before the hr/quote items
+    toolbarItems: [
+      ["heading", "bold", "italic", "strike"],
+      [createEmojiToolbarItem(() => toastEditor), "hr", "quote"],
+      ["ul", "ol", "task", "indent", "outdent"],
+      ["table", "image", "link"],
+      ["code", "codeblock"],
+      ["scrollSync"],
+    ],
     events: {
       change: () => {
         emit("change");
