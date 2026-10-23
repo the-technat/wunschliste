@@ -29,14 +29,29 @@ onMounted(() => {
     el: editorElement.value,
     initialValue: props.initialValue,
     initialEditType: props.initialEditType,
-    // The default toolbar with the emoji picker added before the hr/quote items
+    // The most used items come first. The editor moves the items that don't fit
+    // into its "more" dropdown starting from the end, so the rest comes last.
     toolbarItems: [
-      ["heading", "bold", "italic", "strike"],
-      [createEmojiToolbarItem(() => toastEditor), "hr", "quote"],
-      ["ul", "ol", "task", "indent", "outdent"],
-      ["table", "image", "link"],
-      ["code", "codeblock"],
-      ["scrollSync"],
+      [
+        "bold",
+        createEmojiToolbarItem(() => toastEditor),
+        "link",
+        "image",
+        "ul",
+        "ol",
+      ],
+      ["italic", "strike", "hr"],
+      [
+        "task",
+        "table",
+        "heading",
+        "quote",
+        "indent",
+        "outdent",
+        "code",
+        "codeblock",
+        "scrollSync",
+      ],
     ],
     events: {
       change: () => {
