@@ -1,18 +1,14 @@
 import { mdiEmoticonHappyOutline } from "@mdi/js";
 
 // Plain unicode emojis (not shortcodes or images), so that they are the same
-// characters a phone keyboard inserts. Ordered like a typical keyboard's
-// "frequently used" section, plus a few gift related ones for a wishlist.
+// characters a phone keyboard inserts. These are the "face-smiling" and
+// "face-affection" groups of https://unicode.org/emoji/charts/full-emoji-list.html
+// in the same order, leaving out emojis too new to be supported widely yet.
 // prettier-ignore
 const emojis = [
-  "😂", "❤️", "🤣", "👍", "😭", "🙏", "😘", "🥰", "😍", "😊",
-  "🎉", "😁", "💕", "🥺", "😅", "🔥", "🤦", "🤷", "🙄", "😆",
-  "🤗", "😉", "🎂", "🤔", "👏", "🙂", "😳", "🥳", "😎", "👌",
-  "💜", "😔", "💪", "✨", "💖", "👀", "😋", "😏", "😢", "👉",
-  "😩", "💯", "🌹", "🎈", "💙", "😃", "😡", "💐", "😜", "🙈",
-  "🤞", "😄", "🙌", "😀", "💋", "💔", "😌", "🤩", "🙃", "😬",
-  "😱", "😴", "🤭", "😐", "😒", "😇", "🌸", "🎶", "✌️", "🎁",
-  "🎄", "🎅", "☀️", "⭐", "🏠", "🚗", "📚", "🎮", "👕", "👟",
+  "😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂",
+  "🙂", "🙃", "🫠", "😉", "😊", "😇", "🥰", "😍",
+  "🤩", "😘", "😗", "☺️", "😚", "😙", "🥲",
 ];
 
 function createButton() {
