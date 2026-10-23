@@ -523,7 +523,7 @@ function saveDefaultEditorMode() {
 
 function loadDefaultEditorMode() {
   const defaultWysiwygMode = localStorage.getItem("defaultEditorMode");
-  return defaultWysiwygMode || "markdown";
+  return defaultWysiwygMode || "wysiwyg";
 }
 
 function isContentChanged() {

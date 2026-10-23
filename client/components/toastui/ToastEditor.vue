@@ -12,7 +12,7 @@ const props = defineProps({
   initialValue: String,
   initialEditType: {
     type: String,
-    default: "markdown",
+    default: "wysiwyg",
   },
   addImageBlobHook: Function,
 });
