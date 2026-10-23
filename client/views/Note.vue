@@ -47,7 +47,7 @@
         <input
           v-show="editMode"
           v-model.trim="newTitle"
-          class="w-full bg-theme-background outline-none"
+          class="w-full bg-theme-background outline-hidden"
           placeholder="Title"
         />
       </div>

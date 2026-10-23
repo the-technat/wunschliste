@@ -1,6 +1,6 @@
 <template>
   <button
-    class="text-nowrap rounded px-2 py-1"
+    class="text-nowrap rounded-sm px-2 py-1"
     :class="{
       'bg-theme-background text-theme-text-muted hover:bg-theme-background-elevated':
         style === 'subtle',

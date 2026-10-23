@@ -5,7 +5,7 @@
         <IconLabel :iconPath="item.icon" :label="item.label" />
         <span
           v-if="item.keyboardShortcut"
-          class="ml-4 rounded bg-theme-background-elevated px-3 py-1 text-xs"
+          class="ml-4 rounded-sm bg-theme-background-elevated px-3 py-1 text-xs"
           >{{ item.keyboardShortcut }}</span
         >
       </a>
@@ -21,10 +21,10 @@ import IconLabel from "./IconLabel.vue";
 const menu = ref();
 
 const style = {
-  root: "border p-1 rounded border-theme-border bg-theme-background",
+  root: "border p-1 rounded-sm border-theme-border bg-theme-background",
   menuitem: ({ context }) => ({
     class: [
-      "text-theme-text-muted rounded px-2 py-1",
+      "text-theme-text-muted rounded-sm px-2 py-1",
       "hover:bg-theme-background-elevated hover:cursor-pointer",
       {
         "bg-theme-background-elevated": context.focused,
