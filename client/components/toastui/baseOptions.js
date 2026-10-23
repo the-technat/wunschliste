@@ -27,6 +27,9 @@ const customHTMLRenderer = {
           hash: href,
         };
         original.attributes.href = router.resolve(targetRoute).href;
+        // Jumping to a heading stays in the current tab
+        delete original.attributes.target;
+        delete original.attributes.rel;
       }
     }
     return original;
@@ -37,6 +40,8 @@ const baseOptions = {
   height: "100%",
   plugins: [codeSyntaxHighlight],
   customHTMLRenderer: customHTMLRenderer,
+  // Open all links in a new tab (also applies to links in the WYSIWYG editor and markdown preview)
+  linkAttributes: { target: "_blank", rel: "noopener noreferrer" },
   usageStatistics: false,
 };
 
